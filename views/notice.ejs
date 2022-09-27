@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= pageTitle %>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
+    <header>
+        <%- include('./layout/nav', {user: 'user' }); %>
+    </header>
+    <div class="px-4">
+        <div class="grid justify-center bg-white mx-auto rounded-lg my-16 p-16">
+            <h1 class="text-4xl my-10">Notice page</h1>
+            <table class="text-2xl  border-t border-slate-400/20 py-3 px-3.5 w-full">
+                <% files.forEach(file=> { %>
+                    <tr class="rounded-md p-1.5 border shadow-xl h-12 px-8 ">
+                        <td class="">
+                            <svg class=" mr-2.5 h-5 w-5 flex-none stroke-slate-400" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </td>
+                        <td class="min-w-[299px]">
+                            <span class="flex items-center text-sm">
+                                <%= file.split('_N_')[0] %>
+                            </span>
+                        </td>
+                        <td>
+                            <a class="bg-blue-100 p-1 text-2xl text-blue-700 hover:bg-gray-800 hover:text-[orange] w-22 h-22 ml-4 rounded-sm hover:rounded-md"
+                                href="./data/notice/<%= file.split('_N_') %>" download>
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="h-6"></tr>
+                    <% }); %>
+            </table>
+        </div>
+    </div>
+    <h1>i am notice page like index</h1>
+    <form action="/notice" method="post" enctype="multipart/form-data">
+        <input type="file" name="notice" />
+        <button type="submit">sub</button>
+    </form>
+
+
+    <script>
+        document.getElementById('nav-item-notice').classList.add('active')
+    </script>
+</body>
+
+</html>

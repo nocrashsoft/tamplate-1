@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= pageTitle %>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
+    <header>
+        <%- include('./layout/nav', {user: 'user' }); %>
+    </header>
+    <main>
+
+
+
+        <h1>i am notice page for admin</h1>
+        <div class="px-4">
+
+            <div class="grid justify-center items-center bg-white mx-auto max-w-2xl rounded-lg my-16 p-16 ">
+                <h1 class="text-4xl my-10">Notice page</h1>
+                <form class="flex items-center justify-center space-x-6 mb-8" action="/notice" method="post"
+                    enctype="multipart/form-data">
+                    <div class="shrink-0">
+                        <svg class="mr-2.5 h-5 w-5 flex-none stroke-slate-400" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <label>
+                        <span class="sr-only">Choose notice file</span>
+                        <input type="file" class="block w-full text-sm text-slate-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-violet-50 file:text-violet-700
+                        hover:file:bg-violet-100
+                      " name="notice" required />
+                    </label>
+                    <button class="bg-blue-600 text-white hover:bg-blue-400 px-3 py-2 text-md rounded-md"
+                        type="submit">submit a
+                        new
+                        notice file</button>
+                </form>
+                <table class="text-2xl font-medium">
+                    <% files.forEach(file=> { %>
+                        <section id="<%= file %>">
+                            <tr class="rounded-md p-1.5 border shadow-xl">
+                                <td>
+                                    <a class="bg-blue-100 p-2 text-2xl text-blue-700 hover:bg-gray-800 hover:text-[orange] w-22 h-22 ml-4 rounded-sm hover:rounded-md"
+                                        href="./data/notice/<%= file.split('_N_') %>" download>
+                                        <i class="fa-solid fa-file-arrow-down"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <svg class="mr-2.5 h-5 w-5 flex-none stroke-slate-400" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                </td>
+                                <td>
+                                    <span class="text-sm">
+                                        <%= file.split('_N_')[0] %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <button type="button" onclick="deleteNotise(this,'<%= file %>')"
+                                        class="w-12 h-12 hover:text-white hover:bg-red-500 rounded-lg class=" grid
+                                        place-items-center h-full"">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="h-4"></tr>
+                        </section>
+
+                        <% }); %>
+                </table>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        document.getElementById('nav-item-notice').classList.add('active')
+        const deleteNotise = (THIS, fname) => {
+            if (confirm(`are you sure delete ${fname} ?`)) {
+                oldInnerHTML = THIS.innerHTML;
+                THIS.innerHTML = '...';
+                axios.delete(`/notice/${fname}`)
+                    .then((response) => {
+                        console.log(response);
+                        document.getElementById(fname).remove();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        THIS.innerHTML = oldInnerHTML;
+                        alert(error)
+                    });
+            }
+        }
+    </script>
+
+</body>
+
+</html>
