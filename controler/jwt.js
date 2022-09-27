@@ -26,7 +26,7 @@ const auth_jwt=(req,res,next)=>{
 
 //-------------------------------------------------------------
 const admin={
-    thisIsUsername:"p",
+    321:"321",
 }
 const set_token_jwt= async(req,res)=>{
     let username=req.body.username;
