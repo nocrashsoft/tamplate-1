@@ -19,7 +19,7 @@
         <%- include('./layout/nav', {user: 'user' }); %>
     </header>
     <div class="px-4">
-        <div class="grid justify-center bg-white mx-auto rounded-lg my-16 p-16">
+        <div class="grid justify-center bg-white mx-auto rounded-lg my-8 lg:my-16 p-2 md:p-4 lg:p-8 xl:p-16">
             <h1 class="text-4xl my-10">Notice page</h1>
             <table class="text-2xl  border-t border-slate-400/20 py-3 px-3.5 w-full">
                 <% files.forEach(file=> { %>
@@ -32,7 +32,7 @@
                                 </path>
                             </svg>
                         </td>
-                        <td class="min-w-[299px]">
+                        <td class="md:min-w-[299px]">
                             <span class="flex items-center text-sm">
                                 <%= file.split('_N_')[0] %>
                             </span>
@@ -49,14 +49,11 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
+    <<<<<<< HEAD=======>>>>>>> ed24510d4da09228b5a2b1d0e502a97d0d53c064
 
-=======
->>>>>>> ed24510d4da09228b5a2b1d0e502a97d0d53c064
-
-    <script>
-        document.getElementById('nav-item-notice').classList.add('active')
-    </script>
+        <script>
+            document.getElementById('nav-item-notice').classList.add('active')
+        </script>
 </body>
 
 </html>
