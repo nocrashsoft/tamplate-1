@@ -35,12 +35,12 @@ const pControner={
             });
         } else {
             fs.readdir(notishDataDir, async(err, files) => {
-                res.status(200).render("notice",{pageTitle:'notice -' + process.env.APPNAME, _ORG_NAME:process.env.APPNAME, files, _admin:isAdmin(req)})
+                res.status(200).render("notice",{pageTitle:'notice -' + process.env.APPNAME, _ORG_NAME:process.env.APPNAME, files:files, _admin:isAdmin(req)})
             });
         }
         } catch (error) {
             fs.readdir(notishDataDir, async(err, files) => {
-                res.status(200).render("notice",{pageTitle:'notice -' + process.env.APPNAME, _ORG_NAME:process.env.APPNAME, files, _admin:isAdmin(req)})
+                res.status(200).render("notice",{pageTitle:'notice -' + process.env.APPNAME, _ORG_NAME:process.env.APPNAME, files:files, _admin:isAdmin(req)})
             });
         }
     },
