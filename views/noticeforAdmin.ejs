@@ -64,38 +64,41 @@
                             notice file</button>
                     </form>
                     <table class="text-2xl font-medium">
-                        <% files.forEach(file=> { %>
-                            <tr id="<%= file %>" class="rounded-md p-1.5 border shadow-xl">
-                                <td>
-                                    <a class="bg-blue-100 p-2 text-2xl text-blue-700 hover:bg-gray-800 hover:text-[orange] w-22 h-22 ml-4 rounded-sm hover:rounded-md"
-                                        href="./data/notice/<%= file.split('_N_') %>" download>
-                                        <i class="fa-solid fa-file-arrow-down"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <svg class="mr-2.5 h-5 w-5 flex-none stroke-slate-400" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                        </path>
-                                    </svg>
-                                </td>
-                                <td>
-                                    <span class="text-sm">
-                                        <%= file.split('_N_')[0] %>
-                                    </span>
-                                </td>
-                                <td>
-                                    <button type="button" onclick="deleteNotise(this,'<%= file %>')"
-                                        class="w-12 h-12 hover:text-white hover:bg-red-500 rounded-lg class=" grid
-                                        place-items-center h-full"">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="h-4"></tr>
-                            <% }); %>
+                        <% if(files){ %>
+                            <% files.forEach(file=> { %>
+                                <tr id="<%= file %>" class="rounded-md p-1.5 border shadow-xl">
+                                    <td>
+                                        <a class="bg-blue-100 p-2 text-2xl text-blue-700 hover:bg-gray-800 hover:text-[orange] w-22 h-22 ml-4 rounded-sm hover:rounded-md"
+                                            href="./data/notice/<%= file.split('_N_') %>" download>
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <svg class="mr-2.5 h-5 w-5 flex-none stroke-slate-400" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
+                                    </td>
+                                    <td>
+                                        <span class="text-sm">
+                                            <%= file.split('_N_')[0] %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="deleteNotise(this,'<%= file %>')"
+                                            class="w-12 h-12 hover:text-white hover:bg-red-500 rounded-lg class=" grid
+                                            place-items-center h-full"">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="h-4"></tr>
+                                <% }); %>
+                                    <% } %>
+
                     </table>
                 </div>
             </div>
